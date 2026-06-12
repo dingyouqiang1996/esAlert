@@ -1,0 +1,21 @@
+name: Build and Test Docker Image
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm 
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: go build
+        run: |
+          go mod tidy
+          go build
+
